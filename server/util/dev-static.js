@@ -40,10 +40,13 @@ module.exports = function (app) {
   app.use('/public', proxy({
     target: 'http://localhost:8888'
   }))
-  app.get('*', (req, res) => {
+  app.get('*', (req, res, next) => {
     getTimeplate().then(template => {
-      const content = ReactDomServer.renderToString(serverBundle)
-      res.status(content).send(template.replace('<!-- app -->'))
+      // const content = ReactDomServer.renderToString(serverBundle)
+      res.status(200).send(template)
+      // res.send(template.replace('<!-- app -->'), content)
+    }).catch((next) => {
+      console.log(next)
     })
   })
 }

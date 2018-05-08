@@ -6,7 +6,7 @@ export default class TopicList extends React.Component {
   }
   render() {
     return (
-      <div>this this topic detail why</div>
+      <div>this this topic detail why oh,success</div>
     )
   }
 }
