@@ -1,38 +1,15 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlPlugin = require('html-webpack-plugin')
+const webpackMerge = require('webpack-merge')
 const isDev = process.env.NODE_ENV === 'development'
-const config = {
+const baseConfig = require('./webpack.base')
+const config = webpackMerge(baseConfig, {
   entry: {
     app: path.join(__dirname, '../client/app.js')
   },
   output: {
-    filename: '[name].[hash].js',
-    path: path.join(__dirname, '../dist'),
-    publicPath: '/public/' // publicPath 如果不为空，则将输入文件路径定义成绝对路径，如果为空，则是相对路径
-  },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /.(js|jsx)$/,
-        loader: 'eslint-loader',
-        exclude: [
-          path.resolve(__dirname, '../node_moudles')
-        ]
-      },
-      {
-        test: /.jsx$/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /.js$/,
-        loader: 'babel-loader',
-        exclude: [
-          path.join(__dirname, '../node_modules')
-        ]
-      }
-    ]
+    filename: '[name].[hash].js'
   },
   plugins: [
     // 自动创建一个Index.html文件并将entry里的文件按output路径输入到head中。
@@ -40,7 +17,7 @@ const config = {
       template: path.join(__dirname, '../client/template.html')
     })
   ]
-}
+})
 
 if (isDev) {
   config.entry = {
