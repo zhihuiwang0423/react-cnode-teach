@@ -37,6 +37,9 @@ if (isDev) {
     publicPath: '/public/',
     historyApiFallback: {
       index: '/public/index.html' // 所有404请求都到Index.html页面
+    },
+    proxy: {
+      '/api/**': {target: 'http://localhost:3333', secure: false}
     }
   }
   config.plugins.push(new webpack.HotModuleReplacementPlugin())

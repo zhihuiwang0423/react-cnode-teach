@@ -1,6 +1,8 @@
 const path = require('path')
 
 module.exports = {
+  mode: 'development',
+  // mode: 'production',
   output: {
     path: path.join(__dirname, '../dist'),
     publicPath: '/public/' // publicPath 如果不为空，则将输入文件路径定义成绝对路径，如果为空，则是相对路径
