@@ -9,6 +9,7 @@ export default class TopicList extends React.Component {
     super()
     this.changeName = this.changeName.bind(this)
   }
+
   componentDidMount() {
     // do something
   }
