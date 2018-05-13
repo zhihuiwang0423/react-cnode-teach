@@ -15,6 +15,10 @@ const config = webpackMerge(baseConfig, {
     // 自动创建一个Index.html文件并将entry里的文件按output路径输入到head中。
     new HtmlPlugin({
       template: path.join(__dirname, '../client/template.html')
+    }),
+    new HtmlPlugin({
+      template: '!!ejs-compiled-loader!' + path.join(__dirname, '../client/server.template.ejs'),
+      filename: 'server.ejs'
     })
   ]
 })
